@@ -1,0 +1,27 @@
+services:
+  superset:
+    image: apache/superset:6.0.0
+    container_name: retailops-superset
+    ports:
+      - "8088:8088"
+    environment:
+      SUPERSET_CONFIG_PATH: /app/pythonpath/superset_config.py
+      SUPERSET_SECRET_KEY: retailops-local-demo-key-change-in-production
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: admin
+      ADMIN_EMAIL: admin@retailops.local
+    volumes:
+      - ./data/warehouse:/app/data:ro
+      - ./superset:/app/pythonpath:ro
+      - superset_home:/app/superset_home
+    command:
+      - /bin/sh
+      - -c
+      - |
+        superset db upgrade &&
+        (superset fab create-admin --username "$${ADMIN_USERNAME}" --firstname Retail --lastname Ops --email "$${ADMIN_EMAIL}" --password "$${ADMIN_PASSWORD}" || true) &&
+        superset init &&
+        superset shell < /app/pythonpath/bootstrap.py &&
+        gunicorn --bind 0.0.0.0:8088 --workers 2 --timeout 120 "superset.app:create_app()"
+volumes:
+  superset_home:

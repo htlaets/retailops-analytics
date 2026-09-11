@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Retail operations analytics dashboard">
+  <title>RetailOps Analytics</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2312181f'/%3E%3Cpath d='M7 23V15h4v8zm7 0V9h4v14zm7 0V5h4v18z' fill='%2367e8c2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">R</span><div><strong>RetailOps</strong><span>Orders and delivery</span></div></div>
+      <div class="period"><span class="live-dot"></span> FY 2025 · Updated <span id="updated">—</span></div>
+    </header>
+
+    <section class="heading">
+      <div><p class="eyebrow">2025 OVERVIEW</p><h1>Sales dashboard</h1></div>
+      <div class="filters" aria-label="Dashboard filters">
+        <label>Region<select id="region"><option value="All">All regions</option></select></label>
+        <label>Channel<select id="channel"><option value="All">All channels</option></select></label>
+      </div>
+    </section>
+
+    <section class="kpis" aria-label="Key performance indicators">
+      <article><span>Net revenue</span><strong id="revenue">—</strong><small id="revenue-note">Across selected period</small></article>
+      <article><span>Gross profit</span><strong id="profit">—</strong><small id="margin">— margin</small></article>
+      <article><span>Orders</span><strong id="orders">—</strong><small id="aov">— average order</small></article>
+      <article class="accent"><span>On-time delivery</span><strong id="ontime">—</strong><small>Target ≥ 85%</small></article>
+    </section>
+
+    <section class="grid">
+      <article class="panel trend-panel">
+        <div class="panel-head"><div><span class="section-label">MONTHLY</span><h2>Revenue and gross profit</h2></div><div class="legend"><span><i class="revenue-key"></i>Revenue</span><span><i class="profit-key"></i>Profit</span></div></div>
+        <div id="trend" class="chart" role="img" aria-label="Monthly revenue and gross profit line chart"></div>
+      </article>
+      <article class="panel category-panel">
+        <div class="panel-head"><div><span class="section-label">BY CATEGORY</span><h2>Revenue share</h2></div></div>
+        <div id="categories" class="bars"></div>
+      </article>
+      <article class="panel table-panel">
+        <div class="panel-head"><div><span class="section-label">BY REGION</span><h2>Regional performance</h2></div><span class="hint">Click a row to filter</span></div>
+        <div class="table-wrap"><table><thead><tr><th>Region</th><th>Revenue</th><th>Profit</th><th>Margin</th><th>On-time</th></tr></thead><tbody id="region-table"></tbody></table></div>
+      </article>
+    </section>
+  </main>
+  <footer><span>RetailOps Analytics</span><span>Source: retailops.db · <button id="reset">Reset filters</button></span></footer>
+  <script src="app.js"></script>
+</body>
+</html>

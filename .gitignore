@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+.sites-runtime/
+data/raw/orders.csv
+data/warehouse/*.db
