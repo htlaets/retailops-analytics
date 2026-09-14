@@ -4,14 +4,12 @@
 
 ## Стек
 
-- Python 3.10+
+- Python 3
 - SQL
 - SQLite
-- Apache Superset 6.0
+- Apache Superset
 - Docker Compose
-- HTML, CSS, JavaScript
-- GitHub Actions
-- GitHub Pages
+- HTML, JavaScript
 
 ## Как устроено
 
